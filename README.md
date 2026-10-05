@@ -80,9 +80,9 @@ pip install yfinance pandas plotly
 Run the individual backtest scripts:
 
 ```bash
-python 03_AAPL_EMA_Backtest.py
-python 06_GLD_EMA_Backtest.py
-python 09_DKNG_EMA_Backtest.py
+python 01_AAPL_EMA_Backtest.py
+python 04_GLD_EMA_Backtest.py
+python 07_DKNG_EMA_Backtest.py
 ```
 
 Each script downloads the required historical data, generates the interactive charts and prints the performance results.
