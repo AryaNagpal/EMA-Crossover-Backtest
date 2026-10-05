@@ -65,7 +65,6 @@ The 20-day EMA remained below the 50-day EMA during the tournament, so no bullis
 - Cash earns zero interest, while the Sharpe calculation uses a constant assumed risk-free rate.
 - EMAs are initialised using the first available price, without a separate pre-sample warm-up period.
 - Results have not been validated on an unseen testing period.
-- Asset comparisons may cover different available sample lengths.
 - Win rate does not account for the size of gains and losses.
 - The World Cup section is exploratory and does not identify a causal event effect.
 
