@@ -20,7 +20,7 @@ The strategy follows these rules:
 - Shift the position by one trading day when calculating returns, so a signal does not earn the return for the day that generated it, avoiding look-ahead bias
 - Apply the same EMA settings to all three assets.
 
-The backtest applies each EMA-derived position with a one-trading-day lag when calculating returns, preventing a signal based on today's closing price from being applied to today's return. Uninvested cash earns zero interest, and trading costs and slippage are excluded.
+Uninvested cash earns zero interest, and trading costs and slippage are excluded.
 
 ## Results
 
@@ -74,6 +74,17 @@ Install Python and the required packages:
 
 ```bash
 pip install yfinance pandas plotly
+```
+
+Run the individual backtest scripts:
+
+```bash
+python 03_AAPL_EMA_Backtest.py
+python 06_GLD_EMA_Backtest.py
+python 09_DKNG_EMA_Backtest.py
+```
+
+Each script downloads the required historical data, generates the interactive charts and prints the performance results.
 
 [Read the detailed analysis and evaluation](Report.pdf)
 
