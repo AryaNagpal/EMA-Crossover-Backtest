@@ -4,19 +4,20 @@
 
 This project investigates how a simple trend-following trading strategy performs across Apple (AAPL), a gold ETF (GLD) and DraftKings (DKNG).
 
-Using Python, I compared a 20/50-day exponential moving average (EMA) crossover strategy against buying and holding each asset. The aim was to explore differences in return, risk and performance across assets, rather than assume that one trading rule would work consistently everywhere.
+Using Python, I compared a 20/50-day exponential moving average (EMA) crossover strategy against buying and holding each asset. The aim was to explore differences in return, risk and performance across different assets and market conditions
 
 ## Strategy and Data
 
-Historical daily price data was downloaded using `yfinance`, with adjusted prices enabled.
+I downloaded historical daily price data using `yfinance`, with adjusted prices enabled.
 
-The requested testing window was **1 January 2020 to 1 January 2024**, covering available trading observations before the end date. Each asset's actual sample depends on the data available.
+The requested testing window was **1 January 2020 to 1 January 2024**, covering available trading observations before the end date. 
+Each asset's actual sample depends on the data available.
 
 The strategy follows these rules:
 
 - Hold a long position when the 20-day EMA is above the 50-day EMA.
 - Move into cash when the 20-day EMA is below the 50-day EMA.
-- Shift the position by one trading day when calculating returns, so a signal does not earn the return for the day that generated it.
+- Shift the position by one trading day when calculating returns, so a signal does not earn the return for the day that generated it, avoiding look-ahead bias
 - Apply the same EMA settings to all three assets.
 
 The backtest applies each EMA-derived position with a one-trading-day lag when calculating returns, preventing a signal based on today's closing price from being applied to today's return. Uninvested cash earns zero interest, and trading costs and slippage are excluded.
@@ -34,7 +35,7 @@ The following figures are reported from the project backtests. Maximum drawdown 
 | DKNG  | EMA Strategy | 310.1%       | 51.8%                 | 0.863        | 48.4%            | 66.7%    |
 | DKNG  | Buy & Hold   | 230.1%       | 73.4%                 | 0.723        | 85.7%            | —        |
 
-Sharpe ratios use daily excess returns and an assumed constant **4% annual risk-free rate**. Win rate measures the percentage of completed strategy trades that were profitable; open trades are excluded.
+Sharpe ratios use daily excess returns and an assumed constant **4% annual risk-free rate**. Win rate measures the percentage of completed strategy trades that were profitable; it excludes open trades.
 
 ## Main Findings
 
@@ -56,12 +57,11 @@ These findings suggest that persistent trends matter to the strategy's performan
 
 I also examined DKNG's EMA signals during the **2022 FIFA World Cup, from 20 November to 18 December**.
 
-The 20-day EMA remained below the 50-day EMA during the tournament, so no bullish crossover occurred and the strategy remained in cash. This observation does not establish whether the World Cup affected DKNG's business or share price; it shows that the event did not generate an entry signal under these particular rules.
+The 20-day EMA remained below the 50-day EMA during the tournament, so no bullish crossover occurred, and the strategy remained in cash. This does not establish whether the World Cup affected DKNG's business or share price; it shows that the event did not generate an entry signal under these particular rules.
 
 ## Limitations
 
 - Transaction costs, bid-ask spreads and slippage are excluded.
-- The backtest uses daily close-to-close returns and does not model intraday execution prices.
 - Cash earns zero interest, while the Sharpe calculation uses a constant assumed risk-free rate.
 - EMAs are initialised using the first available price, without a separate pre-sample warm-up period.
 - Results have not been validated on an unseen testing period.
