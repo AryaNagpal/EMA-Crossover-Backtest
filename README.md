@@ -67,6 +67,7 @@ The 20-day EMA remained below the 50-day EMA during the tournament, so no bullis
 - Results have not been validated on an unseen testing period.
 - Win rate does not account for the size of gains and losses.
 - The World Cup section is exploratory and does not identify a causal event effect.
+- Execution assumes trading at the closing price used to calculate the signal, which may not be achievable in practice.
 
 ## How to Run
 
